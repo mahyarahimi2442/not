@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js"></script>
+
+
+</body>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyCbtssHSOB-8uZg2ldUA28ekQ6fv0xTWCU",
+        authDomain: "notification2-e5efd.firebaseapp.com",
+        projectId: "notification2-e5efd",
+        storageBucket: "notification2-e5efd.firebasestorage.app",
+        messagingSenderId: "135950677876",
+        appId: "1:135950677876:web:3f799d976b26efc4e15e21",
+        measurementId: "G-KGG6DYL6FN"
+    };
+    const app = firebase.initializeApp(firebaseConfig);
+    const messaging =firebase.messaging();
+    Notification.requestPermission()
+    .then(permission =>{
+        if (permission == "granted"){
+            messaging.getToken(
+                {
+                    vapidKey:"BA1bSct1bOLFJhd72v1UEWRD8wbVQjE3eihlAFMQKroOgQgEK2h6udCEQ4pvrGZDOyF9cP1L39L3Z5uajIkrS00"
+                }
+            )
+                .then(token =>{
+                    console.log(token);
+                });
+        }else{
+            console.log("access not found");
+        }
+    })
+</script>
+</html>
